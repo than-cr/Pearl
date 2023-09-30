@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 
 
 class ProductController extends Controller
@@ -13,6 +14,14 @@ class ProductController extends Controller
     public function GetProduct($productId): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('products/product')->with('product', Product::findOrFail($productId));
+    }
+
+//    public function Index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function Index()
+    {
+        $products = Product::where('user_id', Auth::user()->id)->get();
+
+        return view('products/index')->with('products', $products);
     }
 
     public function CreateProduct()

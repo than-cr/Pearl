@@ -55,8 +55,8 @@
                                 </p>
                                 <div class="d-flex product-color-variants" data-product-color-variants="data-products-color-variants">
                                     {{--Follow same logic if want to add more images or colors--}}
-                                    <div class="rounded-1 border me-2 active" data-variant="Unique" data-products-images='["{{ $product->image_url }}"]'>
-                                        <img src="{{ $product->image_url }}" alt="" width="38"/>
+                                    <div class="rounded-1 border me-2 active" data-variant="Unique" data-products-images='["{{ '../' . $product->image_url }}"]'>
+                                        <img src="{{ '../' . $product->image_url }}" alt="" width="38"/>
                                     </div>
                                 </div>
                             </div>

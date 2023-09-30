@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('image_url');
             $table->integer('stock_quantity');
             $table->string('size');
+            $table->foreignUuid('status_id')->constrained('types');
+            $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
     }

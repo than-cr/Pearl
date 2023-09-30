@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Type;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -70,6 +71,7 @@ class RegisterController extends Controller
             'last_name' => $data['lastName'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'types_id' => Type::where('name', 'Active')->where('group', 'user_status')->value('id')
         ]);
     }
 }

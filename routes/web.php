@@ -27,4 +27,5 @@ Auth::routes(['verify' => true]);
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/product/{productId}', [ProductController::class, 'GetProduct'])->name('getProduct');
+Route::get('/products', [ProductController::class, 'Index'])->name('index');
 
