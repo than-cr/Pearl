@@ -2823,7 +2823,7 @@
       add('head', '', 'base command link meta noscript script style title');
       add('title hr noscript br');
       add('base', 'href target');
-      add('link', 'href rel media hreflang type sizes hreflang');
+      add('link', 'href rel media hreflang type size hreflang');
       add('meta', 'name http-equiv content charset');
       add('style', 'media type scoped');
       add('script', 'src async defer type charset');
@@ -2838,7 +2838,7 @@
       add('a', 'href target rel media hreflang type', phrasingContent);
       add('q', 'cite', phrasingContent);
       add('ins del', 'cite datetime', flowContent);
-      add('img', 'src sizes srcset alt usemap ismap width height');
+      add('img', 'src size srcset alt usemap ismap width height');
       add('iframe', 'src name width height', flowContent);
       add('embed', 'src type width height');
       add('object', 'data type typemustmatch name usemap form width height', [
@@ -2893,7 +2893,7 @@
           'track source'
         ].join(' '));
         add('picture', '', 'img source');
-        add('source', 'src srcset type media sizes');
+        add('source', 'src srcset type media size');
         add('track', 'kind src srclang label default');
         add('datalist', '', [
           phrasingContent,

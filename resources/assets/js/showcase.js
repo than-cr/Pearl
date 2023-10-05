@@ -75,7 +75,7 @@
       //finds any numbers, including ones that start with += or -=, negative numbers, and ones in scientific notation like 1e-8.
   _numWithUnitExp = /[-+=.]*\d+[.e-]*\d*[a-z%]*/g,
       _complexStringNumExp = /[-+=.]*\d+\.?\d*(?:e-|e\+)?\d*/gi,
-      //duplicate so that while we're looping through matches from exec(), it doesn't contaminate the lastIndex of _numExp which we use to search for colors too.
+      //duplicate so that while we're looping through matches from exec(), it doesn't contaminate the lastIndex of _numExp which we use to search for color too.
   _relExp = /[+-]=-?[.\d]+/,
       _delimitedValueExp = /[^,'"\[\]\s]+/gi,
       // previously /[#\-+.]*\b[a-z\d\-=+%.]+/gi but didn't catch special characters.
@@ -1183,7 +1183,7 @@
     return a;
   },
       _colorOrderData = function _colorOrderData(v) {
-    // strips out the colors from the string, finds all the numeric slots (with units) and returns an array of those. The Array also has a "c" property which is an Array of the index values where the colors belong. This is to help work around issues where there's a mis-matched order of color/numeric data like drop-shadow(#f00 0px 1px 2px) and drop-shadow(0x 1px 2px #f00). This is basically a helper function used in _formatColors()
+    // strips out the color from the string, finds all the numeric slots (with units) and returns an array of those. The Array also has a "c" property which is an Array of the index values where the color belong. This is to help work around issues where there's a mis-matched order of color/numeric data like drop-shadow(#f00 0px 1px 2px) and drop-shadow(0x 1px 2px #f00). This is basically a helper function used in _formatColors()
     var values = [],
         c = [],
         i = -1;
@@ -1258,7 +1258,7 @@
     if (_colorExp.test(combined)) {
       toHSL = _hslExp.test(combined);
       a[1] = _formatColors(a[1], toHSL);
-      a[0] = _formatColors(a[0], toHSL, _colorOrderData(a[1])); // make sure the order of numbers/colors match with the END value.
+      a[0] = _formatColors(a[0], toHSL, _colorOrderData(a[1])); // make sure the order of numbers/color match with the END value.
 
       return true;
     }
@@ -3710,7 +3710,7 @@
       s = data.e;
     } else {
       while (pt) {
-        s = pt.p + (pt.m ? pt.m(pt.s + pt.c * ratio) : Math.round((pt.s + pt.c * ratio) * 10000) / 10000) + s; //we use the "p" property for the text inbetween (like a suffix). And in the context of a complex string, the modifier (m) is typically just Math.round(), like for RGB colors.
+        s = pt.p + (pt.m ? pt.m(pt.s + pt.c * ratio) : Math.round((pt.s + pt.c * ratio) * 10000) / 10000) + s; //we use the "p" property for the text inbetween (like a suffix). And in the context of a complex string, the modifier (m) is typically just Math.round(), like for RGB color.
 
         pt = pt._next;
       }
@@ -4876,7 +4876,7 @@
 
     a = [start, end];
 
-    _colorStringFilter(a); // pass an array with the starting and ending values and let the filter do whatever it needs to the values. If colors are found, it returns true and then we must match where the color shows up order-wise because for things like boxShadow, sometimes the browser provides the computed values with the color FIRST, but the user provides it with the color LAST, so flip them if necessary. Same for drop-shadow().
+    _colorStringFilter(a); // pass an array with the starting and ending values and let the filter do whatever it needs to the values. If color are found, it returns true and then we must match where the color shows up order-wise because for things like boxShadow, sometimes the browser provides the computed values with the color FIRST, but the user provides it with the color LAST, so flip them if necessary. Same for drop-shadow().
 
 
     start = a[0];
@@ -5786,7 +5786,7 @@
           _colorExp.lastIndex = 0;
 
           if (!_colorExp.test(startValue)) {
-            // colors don't have units
+            // color don't have units
             startUnit = getUnit(startValue);
             endUnit = getUnit(endValue);
           }
@@ -8082,7 +8082,7 @@
 
         pin && pinSpacing && (spacer._pinOffset = Math.round(self.progress * pinChange)); //			scrubTween && scrubTween.invalidate();
 
-        onRefresh && !_refreshingAll && onRefresh(self); // when refreshing all, we do extra work to correct pinnedContainer sizes and ensure things don't exceed the maxScroll, so we should do all the refreshes at the end after all that work so that the start/end values are corrected.
+        onRefresh && !_refreshingAll && onRefresh(self); // when refreshing all, we do extra work to correct pinnedContainer size and ensure things don't exceed the maxScroll, so we should do all the refreshes at the end after all that work so that the start/end values are corrected.
       };
 
       self.getVelocity = function () {

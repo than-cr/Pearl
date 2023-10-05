@@ -14,7 +14,7 @@
                                     <div class="d-flex flex-column justify-content-between h-100">
                                         <div>
                                             <div class="border border-1 rounded-3 position-relative mb-3">
-                                                <img class="img-fluid" src="{{ $product->image_url }}" alt=""/>
+                                                <img class="img-fluid" src="{{ asset($product->image_url) }}" alt=""/>
                                             </div>
                                             <a class="stretched-link" href="{{ route('getProduct', $product->id) }}">
                                                 <h6 class="mb-2 lh-sm line-clamp-3 product-name">{{ $product->name }}</h6>
@@ -27,7 +27,13 @@
                                             </p>
                                         </div>
                                         <div>
-                                            <p class="fs--1 text-700 mb-2">@if($product->stock_quantity == 0) Out of stock @else {{ $product->stock_quantity }} Available @endif</p>
+                                            @foreach($product->productVariants as $productVariant)
+                                                <span class="badge badge-tag mb-2">
+                                                    Size: {{ $productVariant->size->name }}
+                                                    -
+                                                    Qty: {{ $productVariant->stock_quantity }}
+                                                 </span>
+                                            @endforeach
                                             <div class="d-flex align-items-center mb-1">
                                                 <h3 class="text-1100 mb-0">$ {{ number_format($product->price, 2) }}</h3>
                                             </div>

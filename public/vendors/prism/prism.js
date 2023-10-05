@@ -330,7 +330,7 @@ var Prism = (function (_self) {
 			 * @returns {Grammar} The new language created.
 			 * @public
 			 * @example
-			 * Prism.languages['css-with-colors'] = Prism.languages.extend('css', {
+			 * Prism.languages['css-with-color'] = Prism.languages.extend('css', {
 			 *     // Prism.languages.css already has a 'comment' token, so this token will overwrite CSS' 'comment' token
 			 *     // at its original position
 			 *     'comment': { ... },

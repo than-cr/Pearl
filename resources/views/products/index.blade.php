@@ -62,10 +62,10 @@
                             </form>
                         </div>
                         <div class="ms-xxl-auto">
-                            <button class="btn btn-primary" id="addProduct">
+                            <a class="btn btn-primary" id="addProduct" href="{{ route('add-product') }}">
                                 <span class="fas fa-plus me-2"></span>
                                 Add product
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -79,7 +79,6 @@
                                     <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="price">PRICE</th>
                                     <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="qualification">QUALIFICATION</th>
                                     <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="stock_quantity">STOCK QUANTITY</th>
-                                    <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="size">SIZE</th>
                                     <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="status">STATUS</th>
                                     <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="vendor">VENDOR</th>
                                     <th class="sort align-middle text-end pe-0 ps-4" scope="col"></th>
@@ -90,7 +89,7 @@
                                      <tr class="position-static">
                                          <td class="align-middle white-space-nowrap py-0">
                                              <a class="d-block border rounded-2" href="{{ route('getProduct', $product->id)  }}">
-                                                 <img src="{{ $product->image_url }}" alt="" width="53" />
+                                                 <img src="{{ asset($product->image_url) }}" alt="" width="53" />
                                              </a>
                                          </td>
                                          <td class="product align-middle ps-4">
@@ -106,11 +105,14 @@
                                                  <span class="fa fa-star text-warning"></span>
                                              @endfor
                                          </td>
-                                         <td class="stock_quantity align-middle white-space-nowrap text-center fw-bold text-700 ps-4">
-                                             {{ $product->stock_quantity }}
-                                         </td>
-                                         <td class="size align-middle white-space-nowrap text-end fw-bold text-700 ps-4">
-                                             {{ $product->size }}
+                                         <td class="stock_quantity align-middle text-center ps-4" style="min-width: 225px;">
+                                             @foreach($product->productVariants as $productVariant)
+                                                 <span class="badge badge-tag mb-2">
+                                                     Size: {{ $productVariant->size->name }}
+                                                     -
+                                                     Qty: {{ $productVariant->stock_quantity }}
+                                                 </span>
+                                             @endforeach
                                          </td>
                                          <td class="status align-middle pb-2 ps-3 text-end" style="min-width: 225px;">
                                             <a class="text-decoration-none" href="#">
@@ -137,7 +139,6 @@
                                                      <a class="dropdown-item text-danger" href="#">Remove</a>
                                                  </div>
                                              </div>
-
                                          </td>
                                      </tr>
                                 @endforeach

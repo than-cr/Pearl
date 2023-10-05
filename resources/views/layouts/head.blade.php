@@ -25,6 +25,9 @@
     <!-- ===============================================-->
     <!--    Stylesheets-->
     <!-- ===============================================-->
+
+    @yield('external-css')
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
@@ -51,4 +54,9 @@
         }
     </script>
     <link href="../../vendors/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+    <script src="{{ asset('assets/js/jquery-3.7.0.min.js') }}"></script>
+    <script src="{{ asset('js/common.js') }}"></script>
+
+    @yield('external-head-js')
 </head>

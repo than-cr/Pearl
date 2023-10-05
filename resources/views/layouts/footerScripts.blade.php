@@ -1,6 +1,8 @@
 <!-- ===============================================-->
 <!--    JavaScripts-->
 <!-- ===============================================-->
+@yield('external-js')
+
 <script src="../../vendors/popper/popper.min.js"></script>
 <script src="../../vendors/bootstrap/bootstrap.min.js"></script>
 <script src="../../vendors/anchorjs/anchor.min.js"></script>

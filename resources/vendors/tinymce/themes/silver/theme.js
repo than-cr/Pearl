@@ -9928,7 +9928,7 @@
 
     var global$4 = tinymce.util.Tools.resolve('tinymce.util.LocalStorage');
 
-    const storageName = 'tinymce-custom-colors';
+    const storageName = 'tinymce-custom-color';
     var ColorCache = (max = 10) => {
       const storageString = global$4.getItem(storageName);
       const localstorage = isString(storageString) ? JSON.parse(storageString) : [];
@@ -19909,7 +19909,7 @@
       };
       const dataset = buildBasicSettingsDataset(editor, 'font_size_formats', Delimiter.Space);
       return {
-        tooltip: 'Font sizes',
+        tooltip: 'Font size',
         text: Optional.some('12pt'),
         icon: Optional.none(),
         isSelectedFor,
@@ -19926,7 +19926,7 @@
     const createFontSizeMenu = (editor, backstage) => {
       const menuItems = createMenuItems(editor, backstage, getSpec$1(editor));
       editor.ui.registry.addNestedMenuItem('fontsize', {
-        text: 'Font sizes',
+        text: 'Font size',
         getSubmenuItems: () => menuItems.items.validateItems(menuItems.getStyleItems())
       });
     };
