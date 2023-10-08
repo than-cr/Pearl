@@ -4,11 +4,15 @@ $(document).ready(function() {
         $lastRow.after($lastRow.clone());
     });
 
-    $("#btnSave").click(function () {
+    $("#btnSave").click(function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
         let data = {
             'title': $('#productTitle').val(),
             'description': tinymce.activeEditor.getContent({format : 'raw'}),
             'price': $('#productPrice').val(),
+            'image': $('#my-awesome-dropzone')[0].dropzone.getAcceptedFiles(),
             'variants': []
         };
 
@@ -21,5 +25,17 @@ $(document).ready(function() {
 
             data.variants.push(variantToAdd);
         });
+
+        const token =  $('input[name="_token"]').val();
+        let JSONObjet = JSON.stringify(data);
+
+        postRequest(token,'add-product', JSONObjet, function (response) {
+            console.log(response);
+        });
     });
 });
+Dropzone.autoDiscover = false;
+
+Dropzone.options.addProductForm = {
+    acceptedFiles: ".jpeg, .jpg, .png",
+}

@@ -5,11 +5,6 @@
     <link href="../../vendors/choices/choices.min.css" rel="stylesheet">
     <link href="../../vendors/flatpickr/flatpickr.min.css" rel="stylesheet">
 
-
-@endsection
-
-@section('external-head-js')
-    <script src="../../vendors/dropzone/dropzone.min.js"></script>
 @endsection
 
 @section('content')
@@ -58,7 +53,6 @@
                             <img class="mt-3 me-2" src="{{ asset('assets/img/icons/image-icon.png') }}" width="40" alt="">
                         </div>
                     </div>
-
                     <br>
                     <h4 class="mb-3">Inventory</h4>
                     <div class="row g-0 border-top border-bottom border-300">
@@ -138,7 +132,7 @@
 
 @section('external-js')
     <script src="../../vendors/tinymce/tinymce.min.js"></script>
-
+    <script src="../../vendors/dropzone/dropzone.min.js"></script>
     <script src="../../vendors/choices/choices.min.js"></script>
     <script src="{{ asset('js/product/add-product.js') }}"></script>
 @endsection

@@ -7,6 +7,9 @@ export default defineConfig({
             input: [
                 'resources/sass/app.scss',
                 'resources/js/app.js',
+                'resources/js/common.js',
+                'resources/js/add-product.js',
+                'resources/js/product,js',
 
                 'resources/assets/css/theme.css',
                 'resources/assets/css/theme-rtl.css',
@@ -31,7 +34,9 @@ export default defineConfig({
                 'resources/assets/js/showcase.js',
 
                 'resources/vendors/feather-icons/feather.min.js',
-                'resources/vendors/bootstrap/bootstrap.min.js'
+                'resources/vendors/bootstrap/bootstrap.min.js',
+                'resources/vendors/dropzone/dropzone.min.css',
+                'resources/vendors/dropzone/dropzone.min.js'
             ],
             refresh: true,
         }),

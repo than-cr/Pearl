@@ -69,8 +69,12 @@
                                         <p class="fw-semi-bold mb-2 text-900">Size :</p>
                                         <div class="d-flex align-items-center">
                                             <select class="form-select w-auto" id="productSize">
+                                                @php($uniqueValues = array())
                                                 @foreach($product->productVariants as $productVariant)
-                                                    <option value="{{ $productVariant->size->name }}">{{ $productVariant->size->name }}</option>
+                                                    @if(!array_key_exists($productVariant->size->name, $uniqueValues))
+                                                        @php($uniqueValues[$productVariant->size->name] = true)
+                                                        <option value="{{ $productVariant->size->name }}">{{ $productVariant->size->name }}</option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                         </div>
@@ -79,8 +83,12 @@
                                         <p class="fw-semi-bold mb-2 text-900">Color :</p>
                                         <div class="d-flex align-items-center">
                                             <select class="form-select w-auto" id="productColor">
+                                                @php($uniqueValues = array())
                                                 @foreach($product->productVariants as $productVariant)
-                                                    <option value="{{ $productVariant->color->name }}">{{ $productVariant->color->name }}</option>
+                                                    @if(!array_key_exists($productVariant->color->name, $uniqueValues))
+                                                        @php($uniqueValues[$productVariant->color->name] = true)
+                                                        <option value="{{ $productVariant->color->name}}">{{ $productVariant->color->name }}</option>
+                                                    @endif
                                                 @endforeach
                                             </select>
                                         </div>
@@ -89,11 +97,11 @@
                                         <p class="fw-semi-bold mb-2 text-900">Quantity : </p>
                                         <div class="d-flex justify-content-between align-items-end">
                                             <div class="d-flex flex-between-center" data-quantity="data-quantity">
-                                                <button class="btn btn-phoenix-primary px-3" data-type="minus">
+                                                <button class="btn btn-phoenix-primary px-3" type="button" data-type="minus">
                                                     <span class="fas fa-minus"></span>
                                                 </button>
                                                 <input class="form-control text-center input-spin-none bg-transparent border-0 outline-none" style="width: 50px;" type="number" min="1" value="1"/>
-                                                <button class="btn btn-phoenix-primary px-3" data-type="plus">
+                                                <button class="btn btn-phoenix-primary px-3" type="button" data-type="plus">
                                                     <span class="fas fa-plus"></span>
                                                 </button>
                                             </div>
