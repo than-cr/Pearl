@@ -30,7 +30,11 @@ $(document).ready(function() {
         let JSONObjet = JSON.stringify(data);
 
         postRequest(token,'add-product', JSONObjet, function (response) {
-            console.log(response);
+            if (response.status === undefined) {
+                location.href = '/products';
+            } else {
+                console.log(response.responseJSON);
+            }
         });
     });
 });

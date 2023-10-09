@@ -4,11 +4,9 @@
     <link href="../../vendors/dropzone/dropzone.min.css" rel="stylesheet">
     <link href="../../vendors/choices/choices.min.css" rel="stylesheet">
     <link href="../../vendors/flatpickr/flatpickr.min.css" rel="stylesheet">
-
 @endsection
 
 @section('content')
-
     <div class="content pt-4 mx-6">
         <form class="mb-9" action="{{ route('add-product') }}" id="addProductForm" enctype="multipart/form-data" method="POST">
             @csrf
@@ -124,10 +122,8 @@
                     </div>
                 </div>
             </div>
-
         </form>
     </div>
-
 @endsection
 
 @section('external-js')

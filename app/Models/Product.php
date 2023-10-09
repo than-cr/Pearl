@@ -49,7 +49,7 @@ class Product extends Model
         'reviewers_counter' => 0,
         'image_url' => '',
         'status_id' => '',
-        'users_id' => '',
+        'user_id' => '',
     ];
 
 

@@ -50,17 +50,14 @@
                                 </div>
                                 <p class="text-success fw-semi-bold fs-1 mb-2" id="availability">
                                 </p>
-                                <p class="mb-2 text-800">{{ $product->description }}</p>
+                                <p class="mb-2 text-800">{!! $product->description !!}</p>
                             </div>
                             <div>
                                 <div class="mb-3">
-                                    <p class="fw-semi-bold mb-2 text-900">Color:
-                                        <span class="text-1100" data-product-color="data-product-color">Unique</span>
-                                    </p>
                                     <div class="d-flex product-color-variants" data-product-color-variants="data-products-color-variants">
                                         {{--Follow same logic if want to add more images or color--}}
-                                        <div class="rounded-1 border me-2 active" data-variant="Unique" data-products-images='["{{ '../' . $product->image_url }}"]'>
-                                            <img src="{{ '../' . $product->image_url }}" alt="" width="38"/>
+                                        <div class="rounded-1 border me-2 active" data-variant="Unique" data-products-images='["{{ \Illuminate\Support\Facades\Storage::disk('public')->get($product->image_url) }}"]'>
+                                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->get($product->image_url) }}" alt="" width="38"/>
                                         </div>
                                     </div>
                                 </div>
