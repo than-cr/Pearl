@@ -7,12 +7,11 @@ use App\Models\Product;
 use App\Models\ProductVariants;
 use App\Models\Size;
 use App\Models\Type;
-use Illuminate\Contracts\Routing\ResponseFactory;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -26,71 +25,99 @@ class ProductController extends Controller
 
     public function Index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $products = Product::where('user_id', Auth::user()->id)->get();
+        $type = Type::where(['name' => 'Removed', 'group' => 'product_status'])->value('id');
+        $products = Product::where('user_id', Auth::user()->id)->where('status_id', '!=', $type)->get();
 
-        return view('products/index')->with('products', $products);
-    }
-
-    public function AddProduct(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-    {
         $colors = Color::all();
         $sizes = Size::all();
-        return view('products/add-product')->with(['colors' => $colors, 'sizes' => $sizes]);
+
+        return view('products/index')->with(['products' => $products, 'colors' => $colors, 'sizes' => $sizes]);
     }
 
-    public function Create(Request $request)
+    private function ProcessImage($image): string
+    {
+        // Get file extension
+        $img = $image[0]['dataURL'];
+        $imageExtensionStart = iconv_strpos($img, "/") + 1;
+        $imageExtensionEnd = iconv_strpos($img, ";");
+        $imageExtension = substr($img, $imageExtensionStart, ($imageExtensionEnd - $imageExtensionStart));
+
+        // Change name and path to save
+        $fileName = time() . '.' . $imageExtension;
+        $filePath = 'products/' . $fileName;
+
+        // Save image
+        Storage::disk('public')->put($filePath, $img);
+
+        return $filePath;
+    }
+
+    public function Create(Request $request): JsonResponse
     {
         try {
-            $title = $request->get('title');
-            $description = $request->get('description');
-            $price = $request->get('price');
-            $image = $request->get('image');
-            $variants = $request->get('variants');
-
-            $product = new Product();
-            $product->name = $title;
-            $product->description = $description;
-            $product->price = $price;
-            $product->qualification = 0;
-            $product->reviewers_counter = 0;
-            $product->status_id = Type::where(['name' => 'Active', 'group' => 'user_status'])->value('id');
-            $product->user_id = Auth::user()->id;
-
-            // Save image with custom name
-            $img = $image[0]['dataURL'];
-            $imageExtensionStart = iconv_strpos($img, "/") + 1;
-            $imageExtensionEnd = iconv_strpos($img, ";");
-            $imageExtension = substr($img, $imageExtensionStart, ($imageExtensionEnd - $imageExtensionStart));
-
-            // Change name
-            $fileName = time() . '.' . $imageExtension;
-            $filePath = 'products/' . $fileName;
-
-            // Save image
-            Storage::disk('public')->put($filePath, $img);
-
-            $product->image_url = $filePath;
-            $product->save();
-
-            foreach ($variants as $variant)
-            {
-                $productVariants = new ProductVariants();
-                $productVariants->product_id = $product->id;
-                $productVariants->color_id = Color::where('name', $variant['color'])->value('id');
-                $productVariants->size_id = Size::where('name', $variant['size'])->value('id');
-                $productVariants->stock_quantity = $variant['stock'];
-
-                $productVariants->save();
-
-                return response()->json($product, 200);
+            $filePath = $this->ProcessImage($request['image']);
+            if (0 == $request['id']) {
+                $request['id'] = uuid_create();
             }
+
+            $product = Product::updateOrCreate(
+                ['id' => $request['id']],
+                [
+                    'name' => $request['title'],
+                    'description' => $request['description'],
+                    'price' => $request['price'],
+                    'qualification' => 0,
+                    'reviewers_counter' => 0,
+                    'status_id' => Type::where(['name' => 'Active', 'group' => 'product_status'])->value('id'),
+                    'user_id' => Auth::user()->id,
+                    'image_url' => $filePath
+                ]
+            );
+
+            foreach ($request['variants'] as $variant)
+            {
+                $color = Color::where('name', $variant['color'])->value('id');
+                $size = Size::where('name', $variant['size'])->value('id');
+
+                ProductVariants::updateOrCreate(
+                    ['product_id' => $product->id, 'color_id' => $color, 'size_id' => $size],
+                    [
+                    'product_id' => $product->id,
+                    'color_id' => $color,
+                    'size_id' => $size,
+                    'stock_quantity' => $variant['stock']
+                ]);
+            }
+
+            return response()->json('Product created successfully.');
         }
         catch (\Throwable $exception)
         {
             report($exception);
-            $message = 'An error has occurred, please contact the administrator';
+            $message = 'An error has occurred, please contact the administrator.';
 
             return response()->json($message, 500);
         }
+    }
+
+    public function Edit($productId): JsonResponse
+    {
+        $product = Product::findOrFail($productId);
+        $product->image_name = substr($product->image_url, (iconv_strpos($product->image_url, "/") + 1));
+        $product->image_url = Storage::disk('public')->get($product->image_url);
+
+        return response()->json($product);
+    }
+
+    public function Delete(Request $request): JsonResponse
+    {
+         $product = Product::findOrFail($request->get('id'));
+         $product->status_id = Type::where(['name' => 'Removed', 'group' => 'product_status'])->value('id');
+
+         if ($product->save()) {
+             return response()->json('Product deleted.');
+         }
+
+         return response()->json('An error has occurred, please contact the administrator.', 500);
     }
 }

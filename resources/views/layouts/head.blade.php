@@ -33,10 +33,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
     <link href="../../vendors/simplebar/simplebar.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link href="../../assets/css/theme-rtl.min.css" type="text/css" rel="stylesheet" id="style-rtl">
-    <link href="../../assets/css/theme.min.css" type="text/css" rel="stylesheet" id="style-default">
-    <link href="../../assets/css/user-rtl.min.css" type="text/css" rel="stylesheet" id="user-style-rtl">
-    <link href="../../assets/css/user.min.css" type="text/css" rel="stylesheet" id="user-style-default">
+    <link href="{{ asset('assets/css/theme-rtl.min.css') }}" type="text/css" rel="stylesheet" id="style-rtl">
+    <link href="{{ asset('assets/css/theme.min.css') }}" type="text/css" rel="stylesheet" id="style-default">
+    <link href="{{ asset('assets/css/user-rtl.min.css') }}" type="text/css" rel="stylesheet" id="user-style-rtl">
+    <link href="{{ asset('assets/css/user.min.css') }}" type="text/css" rel="stylesheet" id="user-style-default">
 
     <script>
         var phoenixIsRTL = window.config.config.phoenixIsRTL;
@@ -57,6 +57,9 @@
 
     <script src="{{ asset('assets/js/jquery-3.7.0.min.js') }}"></script>
     <script src="{{ asset('js/common.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css" rel="stylesheet">
 
     @yield('external-head-js')
 </head>

@@ -42,15 +42,13 @@ class Product extends Model
     protected $table = 'products';
 
     protected $fillable = [
-        'name' => '',
-        'description' => '',
-        'price' => 0,
-        'qualification' => 0,
-        'reviewers_counter' => 0,
-        'image_url' => '',
-        'status_id' => '',
-        'user_id' => '',
+        'name',
+        'description',
+        'price',
+        'qualification',
+        'reviewers_counter',
+        'image_url',
+        'status_id',
+        'user_id',
     ];
-
-
 }

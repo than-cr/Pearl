@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('external-js')
-    <script src="{{ asset('js/product/product.js') }}"></script>
+    <script src="{{ asset('js/product/view-product.js') }}"></script>
 @endsection
 
 @section('content')
@@ -108,7 +108,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>

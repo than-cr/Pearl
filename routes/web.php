@@ -31,8 +31,12 @@ Route::get('/product/{productId}', [ProductController::class, 'GetProduct'])->na
 
 Route::middleware('auth')->group(function ()
 {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('/products', [ProductController::class, 'Index'])->name('product-index');
-    Route::get('/add-product', [ProductController::class, 'AddProduct'])->name('add-product');
-    Route::post('/add-product', [ProductController::class, 'Create'])->name('create');
+    Route::get('/home', [HomeController::class, 'index'])->name('home')->can('View home');
+
+    Route::get('/products', [ProductController::class, 'Index'])->name('product-index')->can('View products');
+    Route::post('/products/save', [ProductController::class, 'Create'])->name('product-save')->can('Add product');
+    Route::get('/products/{productId}', [ProductController::class, 'Edit'])->name('product-edit')->can('Edit product');
+    Route::post('/products/delete', [ProductController::class, 'Delete'])->name('product-delete')->can('Delete product');
+
+
 });

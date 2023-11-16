@@ -47,5 +47,12 @@ class TypesSeeder extends Seeder
             'created_at' => '2023-09-30 20:15:51',
             'updated_at' => '2023-09-30 20:15:51'
         ]);
+        DB::table('types')->insert([
+            'id' => 'fc5d4bf8-9ef1-4c9b-a5df-343a267898af',
+            'name' => 'Removed',
+            'group' => 'product_status',
+            'created_at' => '2023-09-30 20:15:51',
+            'updated_at' => '2023-09-30 20:15:51'
+        ]);
     }
 }

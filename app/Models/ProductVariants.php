@@ -28,9 +28,9 @@ class ProductVariants extends Model
     }
 
     protected $fillable = [
-        'product_id' => '',
-        'color_id' => 0,
-        'size_id' => 0,
-        'stock_quantity' => 0
+        'product_id',
+        'color_id',
+        'size_id',
+        'stock_quantity'
     ];
 }

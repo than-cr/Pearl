@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->uuid('id')->primary()->unique();
             $table->string('name');
-            $table->string('description', 1024);
+            $table->string('description', (10*1024*1024));
             $table->float('price');
             $table->integer('qualification');
             $table->integer('reviewers_counter');

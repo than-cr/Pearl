@@ -15,7 +15,7 @@ class Type extends Model
     protected $table = 'types';
 
     protected $fillable = [
-        'name' => '',
-        'group' => ''
+        'name',
+        'group'
     ];
 }
