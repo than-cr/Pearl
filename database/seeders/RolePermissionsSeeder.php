@@ -16,6 +16,14 @@ class RolePermissionsSeeder extends Seeder
         'Add product',
         'Edit product',
         'Delete product',
+        'View sizes',
+        'Add size',
+        'Edit size',
+        'Delete size',
+        'View colors',
+        'Add color',
+        'Edit color',
+        'Delete color',
     ];
 
     /**

@@ -125,6 +125,8 @@
                                                  <span class="badge badge-tag mb-2">
                                                      Size: {{ $productVariant->size->name }}
                                                      -
+                                                     Color: {{ $productVariant->color->name }}
+                                                     -
                                                      Qty: {{ $productVariant->stock_quantity }}
                                                  </span>
                                              @endforeach

@@ -1,7 +1,5 @@
 
 $(document).ready(function() {
-
-
     $("#btnAddProduct").click(function () {
         $("#addProductModalLabel").text("Add Product");
 
@@ -50,9 +48,9 @@ $(document).ready(function() {
         });
 
         const token =  $('input[name="_token"]').val();
-        let JSONObjet = JSON.stringify(data);
+        let JSONObject = JSON.stringify(data);
 
-        postRequest(token,'/products/save', JSONObjet, function (response) {
+        postRequest(token,'/products/save', JSONObject, function (response) {
             if (response.status === undefined) {
                 printMessage('success', response, function () {
                     location.href = '/products';

@@ -4,6 +4,8 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductVariantController;
+use App\Http\Controllers\SizesController;
+use App\Http\Controllers\ColorsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -38,5 +40,11 @@ Route::middleware('auth')->group(function ()
     Route::get('/products/{productId}', [ProductController::class, 'Edit'])->name('product-edit')->can('Edit product');
     Route::post('/products/delete', [ProductController::class, 'Delete'])->name('product-delete')->can('Delete product');
 
+    Route::get('/sizes', [SizesController::class, 'index'])->name('size-index')->can('View sizes');
+    Route::get('/sizes/{sizeId}', [SizesController::class, 'Show'])->name('size-show')->can('View sizes');
+    Route::post('/sizes/save', [SizesController::class, 'store'])->name('size-save')->can('Add size');
 
+    Route::get('/colors', [ColorsController::class, 'index'])->name('color-index')->can('View colors');
+    Route::get('/colors/{colorId}', [ColorsController::class, 'Show'])->name('color-show')->can('View colors');
+    Route::post('/colors/save', [ColorsController::class, 'store'])->name('color-save')->can('Add color');
 });

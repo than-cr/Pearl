@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\size;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class SizesController extends Controller
@@ -12,7 +13,7 @@ class SizesController extends Controller
      */
     public function index()
     {
-        //
+        return view('size/index')->with(['sizes' => Size::all()]);
     }
 
     /**
@@ -26,9 +27,19 @@ class SizesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request) : JsonResponse
     {
-        //
+        try {
+            $size = Size::Create(['name' => $request['size']]);
+            return response()->json('Size created successfully.');
+        }
+        catch (\Throwable $exception)
+        {
+            report($exception);
+            $message = 'An error has occurred, please contact the administrator.';
+
+            return response()->json($message, 500);
+        }
     }
 
     /**

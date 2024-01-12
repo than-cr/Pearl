@@ -38,9 +38,19 @@
                                     <h6 class="text-1000 mb-0 text-nowrap">Seller Actions</h6>
                                 </div>
                                 @can('View products')
-                                        <div class="ms-n2">
-                                            <a class="text-black d-block mb-1 text-decoration-none hover-bg-100 px-2 py-1 rounded-2" href="{{ route('product-index') }}">Products</a>
-                                        </div>
+                                    <div class="ms-n2">
+                                        <a class="text-black d-block mb-1 text-decoration-none hover-bg-100 px-2 py-1 rounded-2" href="{{ route('product-index') }}">Products</a>
+                                    </div>
+                                @endcan
+                                @can('View sizes')
+                                    <div class="ms-n2">
+                                        <a class="text-black d-block mb-1 text-decoration-none hover-bg-100 px-2 py-1 rounded-2" href="{{ route('size-index') }}">Sizes</a>
+                                    </div>
+                                @endcan
+                                @can('View colors')
+                                    <div class="ms-n2">
+                                        <a class="text-black d-block mb-1 text-decoration-none hover-bg-100 px-2 py-1 rounded-2" href="{{ route('color-index') }}">Colors</a>
+                                    </div>
                                 @endcan
                             </div>
                             @endauth
