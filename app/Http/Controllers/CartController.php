@@ -35,7 +35,9 @@ class CartController extends Controller
 
         $attributes = array([
             'color' => $color,
-            'size' => $size
+            'size' => $size,
+            'product_id' => $product->id,
+            'image_url' => $product->image_url
         ]);
 
         \Cart::add($productVariant->id, $product->name, (float)$product->price, $qty, $attributes);
@@ -45,6 +47,7 @@ class CartController extends Controller
 
     public function GetContent()
     {
-        return \Cart::getContent();
+        //return \Cart::getContent();
+        return View('cart/index')->with(['products' => \Cart::getContent()]);
     }
 }
