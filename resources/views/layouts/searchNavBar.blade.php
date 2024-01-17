@@ -23,8 +23,7 @@
                             <li class="nav-item">
                                 <a class="nav-link px-2 icon-indicator icon-indicator-primary" href="/cart" role="button">
                                     <span class="text-700" data-feather="shopping-cart" style="height: 20px; width: 20px;"></span>
-                                    {{--                                                TODO: Get number from model--}}
-                                    <span class="icon-indicator-number">0</span>
+                                    <span class="icon-indicator-number">{{ Cart::getTotalQuantity() }}</span>
                                 </a>
                             </li>
                             <li class="nav-item dropdown">

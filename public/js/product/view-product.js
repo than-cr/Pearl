@@ -21,4 +21,29 @@ $(document).ready(function() {
     $("#productColor").change(function () {
         getStockQuantity();
     });
+
+    $("#btnAddToCart").click(function () {
+       event.preventDefault();
+
+       let data = {
+           'productId' : $("#productId").val(),
+           'size' : $("#productSize").val(),
+           'color' : $("#productColor").val(),
+           'qty' : $("#qty").val()
+       };
+
+        const token =  $('input[name="_token"]').val();
+        let JSONObject = JSON.stringify(data);
+        let url = '/cart/add';
+
+        postRequest(token, url, JSONObject, function (response) {
+            if (response.status === undefined) {
+                printMessage('success', response, function () {
+                    location.reload();
+                });
+            } else {
+                printMessage('error', response.responseJSON);
+            }
+        });
+    });
 });

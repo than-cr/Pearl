@@ -25,7 +25,7 @@
                             </div>
                         </div>
                         <div class="d-flex">
-                            <button class="btn btn-lg btn-warning rounded-pill w-100 fs--1 fs-sm-0">
+                            <button class="btn btn-lg btn-warning rounded-pill w-100 fs--1 fs-sm-0" id="btnAddToCart">
                                 <span class="fas fa-shopping-cart me-2"></span>
                                 Add to cart
                             </button>
@@ -97,7 +97,7 @@
                                                 <button class="btn btn-phoenix-primary px-3" type="button" data-type="minus">
                                                     <span class="fas fa-minus"></span>
                                                 </button>
-                                                <input class="form-control text-center input-spin-none bg-transparent border-0 outline-none" style="width: 50px;" type="number" min="1" value="1"/>
+                                                <input class="form-control text-center input-spin-none bg-transparent border-0 outline-none" id="qty" style="width: 50px;" type="number" min="1" value="1"/>
                                                 <button class="btn btn-phoenix-primary px-3" type="button" data-type="plus">
                                                     <span class="fas fa-plus"></span>
                                                 </button>

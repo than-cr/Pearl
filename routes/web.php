@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\SizesController;
 use App\Http\Controllers\ColorsController;
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,10 @@ Route::get('/testimonies', [IndexController::class, 'Testimonies'])->name('testi
 Route::get('/product-variant/{productId}/{size}/{color}', [ProductVariantController::class, 'GetProductVariant'])->name('getProductVariant');
 
 Route::get('/product/{productId}', [ProductController::class, 'GetProduct'])->name('getProduct');
+
+Route::get('/cart', [CartController::class, 'GetContent'])->name('getContent');
+Route::post('/cart/add', [CartController::class, 'Add'])->name('addToCart');
+
 
 Route::middleware('auth')->group(function ()
 {
