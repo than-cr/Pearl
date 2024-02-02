@@ -65,7 +65,7 @@
                     </a>
                 </li>
             </ul>
-            <div id="products" data-list='{"valueNames":["product", "price", "qualification", "stock_quantity", "size", "status", "vendor"], "page": 10, "pagination": true}'>
+            <div id="products" data-list='{"valueNames":["product", "price", "category", "qualification", "stock_quantity", "size", "status", "vendor"], "page": 10, "pagination": true}'>
                 <div class="mb-4">
                     <div class="d-flex flex-wrap gap-3">
                         <div class="search-box">
@@ -92,6 +92,7 @@
                                     <th class="sort white-space-nowrap align-middle fs--2" scope="col" style="width: 70px;"></th>
                                     <th class="sort white-space-nowrap align-middle ps-4" scope="col" style="width: 350px;" data-sort="product">PRODUCT NAME</th>
                                     <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="price">PRICE</th>
+                                    <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="category">CATEGORY</th>
                                     <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="qualification">QUALIFICATION</th>
                                     <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="stock_quantity">STOCK QUANTITY</th>
                                     <th class="sort align-middle text-end ps-4" scope="col" style="width: 150px;" data-sort="status">STATUS</th>
@@ -114,6 +115,11 @@
                                          </td>
                                          <td class="price align-middle white-space-nowrap text-end fw-bold text-700 ps-4">
                                              {{ number_format($product->price, 2) }}
+                                         </td>
+                                         <td class="category align-middle white-space-nowrap text-end fw-bold text-700 ps-4">
+                                             <span class="badge badge-tag mb-2">
+                                                 {{ $product->category->name }}
+                                             </span>
                                          </td>
                                          <td class="qualification align-middle text-center ps-4">
                                              @for($counter = 0; $product->qualification > $counter; ++$counter)
@@ -253,7 +259,15 @@
                                             <div class="tab-pane fade show active" id="pricingTabContent" role="tabpanel">
                                                 <h4 class="mb-3 d-sm-none">Pricing</h4>
                                                 <div class="row g-3">
-                                                    <div class="col-12 col-lg-6">
+                                                    <div class="col-auto">
+                                                        <h5 class="mb-2 text-1000">Category</h5>
+                                                        <select class="form-select w-75" name="category" id="category" data-choices="data-choices" data-options='{"removeItemButton": true, "placeholder": true, "addItems": true, "duplicateItemsAllowed": false}'>
+                                                            <option value=""></option>
+                                                            @foreach($categories as $category)
+                                                                <option value="{{ $category->name }}">{{ $category->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <br>
                                                         <h5 class="mb-2 text-1000">Price</h5>
                                                         <input class="form-control" type="text" placeholder="$$$" id="productPrice">
                                                     </div>

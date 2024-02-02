@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\SizesController;
 use App\Http\Controllers\ColorsController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,9 @@ Route::get('/product/{productId}', [ProductController::class, 'GetProduct'])->na
 
 Route::get('/cart', [CartController::class, 'GetContent'])->name('getContent');
 Route::post('/cart/add', [CartController::class, 'Add'])->name('addToCart');
+Route::post('/cart/update', [CartController::class, 'Update'])->name('updateCart');
+Route::post('/cart/delete', [CartController::class, 'Delete'])->name('deleteFromCart');
+Route::get('/cart/data', [CartController::class, 'GetCartData'])->name('cartData');
 
 
 Route::middleware('auth')->group(function ()
@@ -52,4 +56,7 @@ Route::middleware('auth')->group(function ()
     Route::get('/colors', [ColorsController::class, 'index'])->name('color-index')->can('View colors');
     Route::get('/colors/{colorId}', [ColorsController::class, 'Show'])->name('color-show')->can('View colors');
     Route::post('/colors/save', [ColorsController::class, 'store'])->name('color-save')->can('Add color');
+
+    Route::get('/categories', [CategoryController::class, 'Index'])->name('category-index')->can('View categories');
+    Route::post('/categories', [CategoryController::class, 'Save'])->name('category-save')->can('Add category');
 });

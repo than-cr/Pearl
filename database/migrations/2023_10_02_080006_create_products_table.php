@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('image_url');
             $table->foreignUuid('status_id')->constrained('types');
             $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
     }

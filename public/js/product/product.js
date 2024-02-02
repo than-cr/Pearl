@@ -1,5 +1,6 @@
 
 $(document).ready(function() {
+
     $("#btnAddProduct").click(function () {
         $("#addProductModalLabel").text("Add Product");
 
@@ -33,6 +34,7 @@ $(document).ready(function() {
             'title': $('#productTitle').val(),
             'description': tinymce.activeEditor.getContent({format : 'raw'}),
             'price': $('#productPrice').val(),
+            'category': $('#category').val(),
             'image': $('#my-awesome-dropzone')[0].dropzone.getAcceptedFiles(),
             'variants': []
         };

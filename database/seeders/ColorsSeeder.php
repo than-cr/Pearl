@@ -13,50 +13,53 @@ class ColorsSeeder extends Seeder
      */
     public function run(): void
     {
-        //
-        DB::table('colors')->insert([
-            'name' => 'Red',
-            'code' => '#FF0000'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Orange',
-            'code' => '#Ffa500'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Yellow',
-            'code' => '#FFFF00'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Green',
-            'code' => '#00FF00'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Blue',
-            'code' => '#0000FF'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Purple',
-            'code' => '#800080'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Pink',
-            'code' => '#ffc0cb'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Brown',
-            'code' => '#964B00'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Black',
-            'code' => '#000000'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'Gray',
-            'code' => '#808080'
-        ]);
-        DB::table('colors')->insert([
-            'name' => 'White',
-            'code' => '#ffffff'
-        ]);
+        $colors = [
+            [
+                'name' => 'Red',
+                'code' => '#FF0000'
+            ],
+            [
+                'name' => 'Orange',
+                'code' => '#Ffa500'
+            ],
+            [
+                'name' => 'Yellow',
+                'code' => '#FFFF00'
+            ],
+            [
+                'name' => 'Green',
+                'code' => '#00FF00'
+            ],
+            [
+                'name' => 'Blue',
+                'code' => '#0000FF'
+            ],
+            [
+                'name' => 'Purple',
+                'code' => '#800080'
+            ],
+            [
+                'name' => 'Pink',
+                'code' => '#ffc0cb'
+            ],
+            [
+                'name' => 'Brown',
+                'code' => '#964B00'
+            ],
+            [
+                'name' => 'Black',
+                'code' => '#000000'
+            ],
+            [
+                'name' => 'Gray',
+                'code' => '#808080'
+            ],
+            [
+                'name' => 'White',
+                'code' => '#ffffff'
+            ]
+        ];
+
+        DB::table('colors')->insert($colors);
     }
 }

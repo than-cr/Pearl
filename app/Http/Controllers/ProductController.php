@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductVariants;
@@ -30,8 +31,9 @@ class ProductController extends Controller
 
         $colors = Color::all();
         $sizes = Size::all();
+        $categories = Category::all();
 
-        return view('products/index')->with(['products' => $products, 'colors' => $colors, 'sizes' => $sizes]);
+        return view('products/index')->with(['products' => $products, 'colors' => $colors, 'sizes' => $sizes, 'categories' => $categories]);
     }
 
     private function ProcessImage($image): string
@@ -70,6 +72,7 @@ class ProductController extends Controller
                     'reviewers_counter' => 0,
                     'status_id' => Type::where(['name' => 'Active', 'group' => 'product_status'])->value('id'),
                     'user_id' => Auth::user()->id,
+                    'category_id' => Category::where(['name' => $request['category']])->value('id'),
                     'image_url' => $filePath
                 ]
             );
@@ -89,7 +92,7 @@ class ProductController extends Controller
                 ]);
             }
 
-            return response()->json('Product created successfully.');
+            return response()->json('Product created successfully.', 200);
         }
         catch (\Throwable $exception)
         {
@@ -106,7 +109,7 @@ class ProductController extends Controller
         $product->image_name = substr($product->image_url, (iconv_strpos($product->image_url, "/") + 1));
         $product->image_url = Storage::disk('public')->get($product->image_url);
 
-        return response()->json($product);
+        return response()->json($product, 200);
     }
 
     public function Delete(Request $request): JsonResponse
@@ -115,7 +118,7 @@ class ProductController extends Controller
          $product->status_id = Type::where(['name' => 'Removed', 'group' => 'product_status'])->value('id');
 
          if ($product->save()) {
-             return response()->json('Product deleted.');
+             return response()->json('Product deleted.', 200);
          }
 
          return response()->json('An error has occurred, please contact the administrator.', 500);

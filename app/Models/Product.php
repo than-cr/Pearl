@@ -34,6 +34,11 @@ class Product extends Model
         return $this->hasManyThrough(Size::class, ProductVariants::class, 'product_id', 'id');
     }
 
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function productVariants(): HasMany
     {
         return $this->hasMany(ProductVariants::class);
@@ -50,5 +55,6 @@ class Product extends Model
         'image_url',
         'status_id',
         'user_id',
+        'category_id',
     ];
 }

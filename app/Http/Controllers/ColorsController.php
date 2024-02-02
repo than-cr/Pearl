@@ -37,7 +37,7 @@ class ColorsController extends Controller
                 'name' => $request['color'],
                 'code' => $request['code']
             ]);
-            return response()->json('Color created successfully.');
+            return response()->json('Color created successfully.', 200);
         }
         catch (\Throwable $exception)
         {

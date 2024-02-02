@@ -52,6 +52,11 @@
                                         <a class="text-black d-block mb-1 text-decoration-none hover-bg-100 px-2 py-1 rounded-2" href="{{ route('color-index') }}">Colors</a>
                                     </div>
                                 @endcan
+                                @can('View categories')
+                                    <div class="ms-n2">
+                                        <a class="text-black d-block mb-1 text-decoration-none hover-bg-100 px-2 py-1 rounded-2" href="{{ route('category-index') }}">Categories</a>
+                                    </div>
+                                @endcan
                             </div>
                             @endauth
                         </div>

@@ -24,6 +24,10 @@ class RolePermissionsSeeder extends Seeder
         'Add color',
         'Edit color',
         'Delete color',
+        'View categories',
+        'Add category',
+        'Edit category',
+        'Delete category'
     ];
 
     /**

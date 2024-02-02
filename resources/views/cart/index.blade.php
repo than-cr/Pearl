@@ -4,6 +4,7 @@
 @endsection
 
 @section('external-js')
+    <script src="{{ asset('js/cart/cart.js') }}"></script>
 @endsection
 
 @section('content')
@@ -46,14 +47,14 @@
                                             <td class="price align-middle text-900 fs--1 fw-semi-bold text-end">${{ number_format($product->price, 2) }}</td>
                                             <td class="quantity align-middle fs-0 ps-5">
                                                 <div class="input-group input-group-sm flex-nowrap" data-quantity="data-quantity">
-                                                    <button class="btn btn-sm px-2" data-type="minus">-</button>
+                                                    <button class="btn btn-sm px-2" data-type="minus" onclick="updateCart('{{ $product->id }}', -1, true)">-</button>
                                                     <input class="form-control text-center input-spin-none bg-transparent border-0 px-0 disabled" type="number" min="1" value="{{ $product->quantity }}" aria-label="Amount (to the nearest dollar)">
-                                                    <button class="btn btn-sm px-2" data-type="plus">+</button>
+                                                    <button class="btn btn-sm px-2" data-type="plus" onclick="updateCart('{{ $product->id }}', 1, true)">+</button>
                                                 </div>
                                             </td>
-                                            <td class="total align-middle fw-bold text-1000 text-end">${{ number_format(($product->price * $product->quantity), 2) }}</td>
+                                            <td class="total align-middle fw-bold text-1000 text-end" id="{{ $product->id }}_Total">${{ number_format(($product->price * $product->quantity), 2) }}</td>
                                             <td class="align-middle white-space-nowrap text-end pe-0 ps-3">
-                                                <button class="btn bnt-sm text-500 hover-text-600 me-2">
+                                                <button class="btn bnt-sm text-500 hover-text-600 me-2" onclick="deleteProduct('{{ $product->id }}')">
                                                     <span class="fas fa-trash"></span>
                                                 </button>
                                             </td>
@@ -80,7 +81,7 @@
                             <div>
                                 <div class="d-flex justify-content-between">
                                     <p class="text-900 fw-semi-bold">Items subtotal :</p>
-                                    <p class="text-1100 fw-semi-bold">${{ Cart::getSubTotal() }}</p>
+                                    <p class="text-1100 fw-semi-bold" id="cartSubTotal"></p>
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <p class="text-900 fw-semi-bold">Discount :</p>
@@ -93,7 +94,7 @@
 
                                 <div class="d-flex justify-content-between border-y border-dashed py-3 mb-4">
                                     <h4 class="mb-0">Total :</h4>
-                                    <h4 class="mb-0">${{ Cart::getTotal() }}</h4>
+                                    <h4 class="mb-0" id="cartTotal"></h4>
                                 </div>
 
                                 <button class="btn btn-primary w-100 mb-3">

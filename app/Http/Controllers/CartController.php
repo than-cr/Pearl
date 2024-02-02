@@ -8,7 +8,9 @@ use App\Models\ProductVariants;
 use App\Models\Size;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
 
 class CartController extends Controller
 {
@@ -30,7 +32,7 @@ class CartController extends Controller
 
         if ($qty > $productVariant->stock_quantity)
         {
-            return response()->json('error', 500);
+            return response()->json('Quantity selected is greater than available in stock', 500);
         }
 
         $attributes = array([
@@ -45,9 +47,47 @@ class CartController extends Controller
         return response()->json('Product added successfully.');
     }
 
-    public function GetContent()
+    public function GetContent(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        //return \Cart::getContent();
         return View('cart/index')->with(['products' => \Cart::getContent()]);
+    }
+
+    public function Delete(Request $request): JsonResponse
+    {
+        $isRemoved = \Cart::remove($request['productId']);
+        if ($isRemoved)
+        {
+            return response()->json('Product removed successfully.');
+        }
+        else
+        {
+            return response()->json('Error removing product.', 500);
+        }
+    }
+
+    public function Update(Request $request): JsonResponse
+    {
+        $productId = $request['productId'];
+        $quantity = $request['quantity'];
+        $relative = $request['relative'];
+        \Cart::update($productId, array(
+            'quantity' => array(
+                'relative' => $relative,
+                'value' => $quantity
+            ),
+        ));
+
+        return response()->json(\Cart::get($productId), 200);
+    }
+
+    public function GetCartData(): JsonResponse
+    {
+        $subtotal = \Cart::getSubTotal();
+        $total = \Cart::getTotal();
+
+        return response()->json(array(
+            'subtotal'=> number_format($subtotal, 2),
+            'total' => number_format($total, 2)
+        ), 200);
     }
 }
