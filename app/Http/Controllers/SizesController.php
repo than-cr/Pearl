@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\size;
+use App\Models\Size;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
