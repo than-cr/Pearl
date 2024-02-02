@@ -16,6 +16,6 @@
     "dependencies": {
         "dropzone": "^6.0.0-beta.2",
         "feather-icons": "^4.29.1",
-        "sweetalert2": "^11.7.32"
+        "sweetalert2": "^11.6.13"
     }
 }

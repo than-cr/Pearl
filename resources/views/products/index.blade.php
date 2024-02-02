@@ -283,7 +283,8 @@
                                                                 <tr class="mb-2 variants">
                                                                     <td>
                                                                         <label class="text-700" for="productSize">Size: </label>
-                                                                        <select class="form-select w-auto" name="productSize">
+                                                                        <select class="form-select w-auto" name="productSize" id="productSize">
+                                                                            <option value=""></option>
                                                                             @foreach($sizes as $size)
                                                                                 <option value="{{ $size->name }}">{{ $size->name }}</option>
                                                                             @endforeach
@@ -291,7 +292,8 @@
                                                                     </td>
                                                                     <td class="mx-2">
                                                                         <label class="text-700 ms-3" for="productColor">Color: </label>
-                                                                        <select class="form-select w-auto ms-1" name="productColor">
+                                                                        <select class="form-select w-auto ms-1" name="productColor" id="productColor">
+                                                                            <option value=""></option>
                                                                             @foreach($colors as $color)
                                                                                 <option value="{{ $color->name }}">
                                                                                     {{ $color->name }}
