@@ -56,8 +56,8 @@
                                 <div class="mb-3">
                                     <div class="d-flex product-color-variants" data-product-color-variants="data-products-color-variants">
                                         {{--Follow same logic if want to add more images or color--}}
-                                        <div class="rounded-1 border me-2 active" data-variant="Unique" data-products-images='["{{ \Illuminate\Support\Facades\Storage::disk('public')->get($product->image_url) }}"]'>
-                                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->get($product->image_url) }}" alt="" width="38"/>
+                                        <div class="rounded-1 border me-2 active" data-variant="Unique" data-products-images='["{{ \Illuminate\Support\Facades\Storage::disk(env('DISK'))->get($product->image_url) }}"]'>
+                                            <img src="{{ \Illuminate\Support\Facades\Storage::disk(env('DISK'))->get($product->image_url) }}" alt="" width="38"/>
                                         </div>
                                     </div>
                                 </div>

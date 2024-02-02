@@ -14,7 +14,7 @@
                                     <div class="d-flex flex-column justify-content-between h-100">
                                         <div>
                                             <div class="border border-1 rounded-3 position-relative mb-3">
-                                                <img class="img-fluid" src="{{ \Illuminate\Support\Facades\Storage::disk('public')->get($product->image_url) }}" alt=""/>
+                                                <img class="img-fluid" src="{{ \Illuminate\Support\Facades\Storage::disk(env('DISK'))->get($product->image_url) }}" alt=""/>
                                             </div>
                                             <a class="stretched-link" href="{{ route('getProduct', $product->id) }}">
                                                 <h6 class="mb-2 lh-sm line-clamp-3 product-name">{{ $product->name }}</h6>

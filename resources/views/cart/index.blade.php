@@ -36,7 +36,7 @@
                                         <tr class="cart-table-row btn-reveal-trigger">
                                             <td class="align-middle white-space-nowrap py-0">
                                                 <a class="d-block border rounded-2" href="/product/{{ $product->attributes[0]['product_id'] }}">
-                                                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->get($product->attributes[0]['image_url']) }}" alt="" width="53">
+                                                    <img src="{{ \Illuminate\Support\Facades\Storage::disk(env('DISK'))->get($product->attributes[0]['image_url']) }}" alt="" width="53">
                                                 </a>
                                             </td>
                                             <td class="products align-middle">

@@ -105,7 +105,7 @@
                                      <tr class="position-static">
                                          <td class="align-middle white-space-nowrap py-0">
                                              <a class="d-block border rounded-2" href="{{ route('getProduct', $product->id)  }}">
-                                                 <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->get($product->image_url) }}" alt="" width="53" />
+                                                 <img src="{{ \Illuminate\Support\Facades\Storage::disk(env('DISK'))->get($product->image_url) }}" alt="" width="53" />
                                              </a>
                                          </td>
                                          <td class="product align-middle ps-4">

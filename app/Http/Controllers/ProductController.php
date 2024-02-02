@@ -49,7 +49,7 @@ class ProductController extends Controller
         $filePath = 'products/' . $fileName;
 
         // Save image
-        Storage::disk('public')->put($filePath, $img);
+        $bUploaded = Storage::disk(env('DISK'))->put($filePath, $img);
 
         return $filePath;
     }
@@ -107,7 +107,7 @@ class ProductController extends Controller
     {
         $product = Product::findOrFail($productId);
         $product->image_name = substr($product->image_url, (iconv_strpos($product->image_url, "/") + 1));
-        $product->image_url = Storage::disk('public')->get($product->image_url);
+        $product->image_url = Storage::disk(env('DISK'))->get($product->image_url);
 
         return response()->json($product, 200);
     }
