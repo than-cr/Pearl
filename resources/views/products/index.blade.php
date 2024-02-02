@@ -195,7 +195,7 @@
         </div>
     </div>
 
-    <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true" data-bs-focus="false">
+    <div class="modal modal-md fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true" data-bs-focus="false">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
@@ -259,9 +259,9 @@
                                             <div class="tab-pane fade show active" id="pricingTabContent" role="tabpanel">
                                                 <h4 class="mb-3 d-sm-none">Pricing</h4>
                                                 <div class="row g-3">
-                                                    <div class="col-auto">
+                                                    <div class="">
                                                         <h5 class="mb-2 text-1000">Category</h5>
-                                                        <select class="form-select w-75" name="category" id="category" data-choices="data-choices" data-options='{"removeItemButton": true, "placeholder": true, "addItems": true, "duplicateItemsAllowed": false}'>
+                                                        <select class="form-select w-auto" name="category" id="category" data-choices="data-choices" data-options='{"removeItemButton": true, "placeholder": true, "addItems": true, "duplicateItemsAllowed": false}'>
                                                             <option value=""></option>
                                                             @foreach($categories as $category)
                                                                 <option value="{{ $category->name }}">{{ $category->name }}</option>
@@ -277,13 +277,13 @@
                                                 <div class="d-flex flex-column h-100">
                                                     <h5 class="mb-3 text-1000">Variants</h5>
                                                     <div class="row g-3 flex-1 mb-4">
-                                                        <div class="col-sm-7">
+                                                        <div class="">
                                                             <table class="w-auto" id="variantsTable">
                                                                 <tbody id="variantsTableBody">
                                                                 <tr class="mb-2 variants">
                                                                     <td>
                                                                         <label class="text-700" for="productSize">Size: </label>
-                                                                        <select class="form-select w-auto" name="productSize" id="productSize">
+                                                                        <select class="form-select w-auto" name="productSize">
                                                                             <option value=""></option>
                                                                             @foreach($sizes as $size)
                                                                                 <option value="{{ $size->name }}">{{ $size->name }}</option>
@@ -292,7 +292,7 @@
                                                                     </td>
                                                                     <td class="mx-2">
                                                                         <label class="text-700 ms-3" for="productColor">Color: </label>
-                                                                        <select class="form-select w-auto ms-1" name="productColor" id="productColor">
+                                                                        <select class="form-select w-auto ms-1" name="productColor">
                                                                             <option value=""></option>
                                                                             @foreach($colors as $color)
                                                                                 <option value="{{ $color->name }}">

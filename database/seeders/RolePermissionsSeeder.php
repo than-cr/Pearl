@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
@@ -30,6 +29,31 @@ class RolePermissionsSeeder extends Seeder
         'Delete category'
     ];
 
+    private array $sellerPermissions = [
+        'View home',
+        'View products',
+        'Add product',
+        'Edit product',
+        'Delete product',
+        'View sizes',
+        'Add size',
+        'Edit size',
+        'Delete size',
+        'View colors',
+        'Add color',
+        'Edit color',
+        'Delete color',
+        'View categories',
+        'Add category',
+        'Edit category',
+        'Delete category'
+    ];
+
+    private array $buyerPermissions = [
+        'View home',
+        'View products'
+    ];
+
     /**
      * Run the database seeds.
      */
@@ -45,5 +69,13 @@ class RolePermissionsSeeder extends Seeder
 
         $user = User::find(1);
         $user->assignRole([$role->id]);
+
+        $role = Role::create(['name' => 'Seller']);
+        $permissions = Permission::whereIn('name', $this->sellerPermissions)->get();
+        $role->syncPermissions($permissions);
+
+        $role = Role::create(['name' => 'Buyer']);
+        $permissions = Permission::whereIn('name', $this->buyerPermissions)->get();
+        $role->syncPermissions($permissions);
     }
 }
