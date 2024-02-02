@@ -33,10 +33,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&amp;display=swap" rel="stylesheet">
     <link href="../../vendors/simplebar/simplebar.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
-    <link href="{{ asset('assets/css/theme-rtl.min.css', true) }}" type="text/css" rel="stylesheet" id="style-rtl">
-    <link href="{{ asset('assets/css/theme.min.css', true) }}" type="text/css" rel="stylesheet" id="style-default">
-    <link href="{{ asset('assets/css/user-rtl.min.css', true) }}" type="text/css" rel="stylesheet" id="user-style-rtl">
-    <link href="{{ asset('assets/css/user.min.css', true) }}" type="text/css" rel="stylesheet" id="user-style-default">
+    <link href="{{ asset('assets/css/theme-rtl.min.css') }}" type="text/css" rel="stylesheet" id="style-rtl">
+    <link href="{{ asset('assets/css/theme.min.css') }}" type="text/css" rel="stylesheet" id="style-default">
+    <link href="{{ asset('assets/css/user-rtl.min.css') }}" type="text/css" rel="stylesheet" id="user-style-rtl">
+    <link href="{{ asset('assets/css/user.min.css') }}" type="text/css" rel="stylesheet" id="user-style-default">
 
     <script>
         var phoenixIsRTL = window.config.config.phoenixIsRTL;
