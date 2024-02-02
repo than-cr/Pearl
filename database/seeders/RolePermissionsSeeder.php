@@ -51,7 +51,6 @@ class RolePermissionsSeeder extends Seeder
 
     private array $buyerPermissions = [
         'View home',
-        'View products'
     ];
 
     /**

@@ -32,6 +32,7 @@
                                 </div>
                             </div>
                             @auth()
+                                @can('View products')
                                 <div class="col-12 col-sm-6 col-md-4">
                                 <div class="d-flex align-items-center mb-3">
                                     <span class="text-primary me-2" data-feather="shopping-bag" style="stroke-width: 3;"></span>
